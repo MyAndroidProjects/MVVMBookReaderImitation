@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="handler"
+            type="ru.lopatin.mvvm_pattern_kotlin.ui.fragments.BulgakovFragment.ClickHandler" />
+
+        <variable
+            name="bulgakovFragmentViewModel"
+            type="ru.lopatin.mvvm_pattern_kotlin.view_models.BulgakovFragmentViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/bars"
+            android:layout_width="@dimen/xxxlarge"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/progressBarBulgakov"
+                android:layout_width="@dimen/xxxlarge"
+                android:layout_height="@dimen/xxxlarge"
+                android:visibility="@{bulgakovFragmentViewModel.showProgressBarFirstObservableField}" />
+
+            <ProgressBar
+                android:id="@+id/progressBarBulgakovSecond"
+                android:layout_width="@dimen/xxxlarge"
+                android:layout_height="@dimen/xxxlarge"
+                android:visibility="@{bulgakovFragmentViewModel.showProgressBarSecondObservableField}" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/xxxlarge"
+            android:layout_marginLeft="@dimen/xxxlarge"
+            android:layout_weight="9"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toTopOf="@id/buttonPanel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/pageText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/medium"
+                android:paddingEnd="@dimen/medium"
+                android:paddingRight="@dimen/medium"
+                android:paddingBottom="@dimen/medium"
+                android:text="@{bulgakovFragmentViewModel.pageTextObservableField}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                tools:ignore="RtlSymmetry" />
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/buttonPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scrollView">
+
+            <Button
+                android:id="@+id/buttonNextWriter"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="@{()->handler.buttonBelyaevSelected()}"
+                android:text="@string/belyaev_surname"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button" />
+
+            <Button
+                android:id="@+id/buttonNext"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="@{()->handler.buttonNextPageSelected()}"
+                android:text="@string/next"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+
+
+                />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

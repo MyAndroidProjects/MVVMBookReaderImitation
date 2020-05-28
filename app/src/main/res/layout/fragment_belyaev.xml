@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="handler"
+            type="ru.lopatin.mvvm_pattern_kotlin.ui.fragments.BelyaevFragment.ClickHandler" />
+
+        <variable
+            name="belyaevFragmentViewModel"
+            type="ru.lopatin.mvvm_pattern_kotlin.view_models.BelyaevFragmentViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="9"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/progressBarBelyaev"
+                android:layout_width="@dimen/xxxlarge"
+                android:layout_height="@dimen/xxxlarge"
+                android:layout_gravity="start"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/progressBarBelyaevSecond"
+                android:layout_width="@dimen/xxxlarge"
+                android:layout_height="@dimen/xxxlarge"
+                android:layout_gravity="start"
+                android:layout_marginTop="@dimen/xxxlarge"
+                android:visibility="gone" />
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/xxxlarge"
+                android:layout_marginLeft="@dimen/xxxlarge"
+                android:scrollbars="vertical">
+
+                <TextView
+                    android:id="@+id/pageText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/medium"
+                    android:layout_gravity="start"
+                    android:paddingBottom="@dimen/medium"
+                    android:text="@{belyaevFragmentViewModel.pageTextObservableField}"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+            </ScrollView>
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/buttons"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/buttonNextWriter"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="@{() -> handler.buttonBulgakovSelected()}"
+                android:text="@string/arrow_up"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                tools:ignore="NestedWeights" />
+
+            <Button
+                android:id="@+id/buttonNext"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="@{() -> handler.buttonNextPageSelected()}"
+                android:text="@string/arrow"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

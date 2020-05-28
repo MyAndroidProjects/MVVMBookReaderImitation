@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="mainActivityViewModel"
+            type="ru.lopatin.mvvm_pattern_kotlin.view_models.MainActivityViewModel" />
+
+        <variable
+            name="handler"
+            type="ru.lopatin.mvvm_pattern_kotlin.ui.activities.MainActivity.ClickHandler" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.activities.MainActivity">
+
+        <TextView
+            android:id="@+id/writerSurnameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small"
+            android:layout_marginBottom="@dimen/small"
+            android:gravity="center"
+            android:paddingStart="@dimen/large"
+            android:paddingEnd="@dimen/large"
+            android:text="@{mainActivityViewModel.writerSurname}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            tools:text="@string/bulgakov_surname"
+
+            />
+
+        <TextView
+            android:id="@+id/writerNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingStart="@dimen/large"
+            android:paddingEnd="@dimen/large"
+            android:text="@{mainActivityViewModel.writerName}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            tools:text="@string/bulgakov_name" />
+
+        <TextView
+            android:id="@+id/writerPatronymicText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small"
+            android:gravity="center"
+            android:paddingStart="@dimen/large"
+            android:paddingEnd="@dimen/large"
+            android:text="@{mainActivityViewModel.writerPatronymic}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textStyle="normal"
+            tools:text="@string/bulgakov_patronymic" />
+
+        <Button
+            android:id="@+id/buttonReadBelyaev"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:gravity="center"
+            android:onClick="@{()->handler.buttonReadBelyaevOnClick()}"
+            android:padding="@dimen/medium"
+            android:text="@string/read_belyaev"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:textStyle="normal"
+            android:visibility="@{mainActivityViewModel.showReadBulgakovButtonHideBelyaevButtonLiveData ? View.GONE : View.VISIBLE}" />
+
+        <Button
+            android:id="@+id/buttonReadBulgakov"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:onClick="@{() -> handler.buttonReadBulgakovOnClick()}"
+            android:padding="@dimen/medium"
+            android:text="@string/read_bulgakov"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:visibility="@{mainActivityViewModel.showReadBulgakovButtonHideBelyaevButtonLiveData ? View.VISIBLE : View.GONE}" />
+
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+    </LinearLayout>
+</layout>
