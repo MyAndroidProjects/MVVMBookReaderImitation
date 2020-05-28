@@ -5,7 +5,6 @@ import ru.lopatin.mvvm_pattern_kotlin.storage.StorageImitation
 
 class Repository  {
 
-
     suspend  fun getQuantityOfTextPartsMasterAndMargarita(): Int {
         // запрос к базе данных
         val storageImitation = StorageImitation()
